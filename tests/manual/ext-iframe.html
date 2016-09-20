@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Classic theme development file</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="../../js/tinymce/tinymce.min.js"></script>
+<script>
+	$(document).ready(function(){
+		/*
+		tinymce.init({
+			selector: "#editor-target",
+			menu: {},
+			plugins: "textcolor colorpicker",
+			toolbar: 'undo redo | bold italic | bullist numlist | alignleft aligncenter alignright alignjustify | link | fontselect fontsizeselect | forecolor',
+			fixed_toolbar_container: "#editor",
+			inline: true,
+			setup: function (ed) {
+				ed.on("blur", function (e) {
+					console.log("EDITOR ON BLUR");
+				});
+				ed.on('hide', function(e) {
+					console.log("EDITOR ON BLUR");
+				});
+			}
+		});
+		*/
+	});
+</script>
+
+<script>
+	function iframeLoaded() {
+
+		var $ifr = $("#editor-ifr");
+		tinymce.init({
+			target: $ifr.contents().find(".rte-enabled")[0],
+			content_window: $ifr[0].contentWindow,
+			content_document: $ifr[0].contentWindow.document,
+			menu: {},
+			plugins: "textcolor colorpicker",
+			toolbar: 'undo redo | bold italic | bullist numlist | alignleft aligncenter alignright alignjustify | link | fontselect fontsizeselect | forecolor',
+			fixed_toolbar_container: "#editor",
+			inline: true,
+			setup: function (ed) {
+				ed.on("blur", function (e) {
+					console.log("EDITOR ON BLUR");
+				});
+				ed.on('hide', function(e) {
+					console.log("EDITOR ON BLUR");
+				});
+			}
+		});
+	}
+
+</script>
+</head>
+<body>
+	<div id="editor"></div>
+	<iframe src="iframe-content.html" id="editor-ifr"></iframe>
+	<!--div id="editor-target"></div-->
+</body>
+</html>

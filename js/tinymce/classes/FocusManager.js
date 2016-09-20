@@ -177,7 +177,9 @@ define("tinymce/FocusManager", [
 					var focusedEditor = editorManager.focusedEditor,
 						activeEl = getActiveElement();
 
-					if(activeEl.tagName.toLowerCase() == "iframe") activeEl = activeEl.contentWindow.document.activeElement;
+					if (activeEl.tagName.toLowerCase() == "iframe") {
+						activeEl = activeEl.contentWindow.document.activeElement;
+					}
 
 					// Still the same editor the blur was outside any editor UI
 					if (!isUIElement(activeEl) && focusedEditor == editor) {
