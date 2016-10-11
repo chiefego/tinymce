@@ -14,6 +14,8 @@
 tinymce.PluginManager.add('textcolor', function(editor) {
 	var cols, rows;
 
+	console.log("TEXT COLOR");
+
 	rows = {
 		forecolor: editor.settings.forecolor_rows || editor.settings.textcolor_rows || 5,
 		backcolor: editor.settings.backcolor_rows || editor.settings.textcolor_rows || 5

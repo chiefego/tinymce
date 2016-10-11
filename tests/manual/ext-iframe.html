@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script src="../../js/tinymce/tinymce.min.js"></script>
+<script src="../../js/tinymce/tinymce.js"></script>
 <script>
 	$(document).ready(function(){
 		/*
@@ -32,15 +32,14 @@
 
 <script>
 	function iframeLoaded() {
-
 		var $ifr = $("#editor-ifr");
 		tinymce.init({
 			target: $ifr.contents().find(".rte-enabled")[0],
 			content_window: $ifr[0].contentWindow,
 			content_document: $ifr[0].contentWindow.document,
 			menu: {},
-			plugins: "textcolor colorpicker",
-			toolbar: 'undo redo | bold italic | bullist numlist | alignleft aligncenter alignright alignjustify | link | fontselect fontsizeselect | forecolor',
+			plugins: "textcolor colorpicker lineheight",
+			toolbar: 'undo redo | bold italic | bullist numlist | alignleft aligncenter alignright alignjustify | link | fontselect fontsizeselect lineheightselect | forecolor',
 			fixed_toolbar_container: "#editor",
 			inline: true,
 			setup: function (ed) {
