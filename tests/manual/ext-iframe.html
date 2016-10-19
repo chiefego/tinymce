@@ -5,8 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0" />
 
+<link href="css/spectrum.css" rel="stylesheet" />
+
 <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
 <script src="../../js/tinymce/tinymce.js"></script>
+<script src="../js/spectrum.js"></script>
 <script>
 	$(document).ready(function(){
 		/*
@@ -41,14 +44,23 @@
 			plugins: "textcolor colorpicker lineheight",
 			toolbar: 'undo redo | bold italic | bullist numlist | alignleft aligncenter alignright alignjustify | link | fontselect fontsizeselect lineheightselect | forecolor',
 			fixed_toolbar_container: "#editor",
+			font_formats: 'Arial-300=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n',
 			inline: true,
 			setup: function (ed) {
 				ed.on("blur", function (e) {
-					console.log("EDITOR ON BLUR");
+					//console.log("EDITOR ON BLUR");
 				});
 				ed.on('hide', function(e) {
-					console.log("EDITOR ON BLUR");
+					//console.log("EDITOR ON BLUR");
 				});
+			},
+			color_picker_callback: function(callback, value) {
+				var $picker = $("<div id='flat' style='width:100px; height: 100px; background: #ff6600;' ></div>").appendTo(document.body);
+				$picker.on("click", function() {
+					callback("rgba(0,0,0,.5)");
+					$(this).remove();
+				});
+				return false;
 			}
 		});
 	}

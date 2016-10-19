@@ -33,7 +33,8 @@ define("tinymce/FocusManager", [
 	function FocusManager(editorManager) {
 		function getActiveElement() {
 			try {
-				return document.activeElement;
+				return document.activeElement.tagName.toLowerCase() == "iframe" ?
+					document.activeElement.contentWindow.document.activeElement : document.activeElement;
 			} catch (ex) {
 				// IE sometimes fails to get the activeElement when resizing table
 				// TODO: Investigate this
@@ -174,15 +175,10 @@ define("tinymce/FocusManager", [
 
 			editor.on('focusout', function() {
 				Delay.setEditorTimeout(editor, function() {
-					var focusedEditor = editorManager.focusedEditor,
-						activeEl = getActiveElement();
-
-					if (activeEl.tagName.toLowerCase() == "iframe") {
-						activeEl = activeEl.contentWindow.document.activeElement;
-					}
+					var focusedEditor = editorManager.focusedEditor;
 
 					// Still the same editor the blur was outside any editor UI
-					if (!isUIElement(activeEl) && focusedEditor == editor) {
+					if (!isUIElement(getActiveElement()) && focusedEditor == editor) {
 						editor.fire('blur', {focusedEditor: null});
 						editorManager.focusedEditor = null;
 

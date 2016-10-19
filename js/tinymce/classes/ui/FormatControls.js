@@ -557,7 +557,12 @@ define("tinymce/ui/FormatControls", [
 				onPostRender: createListBoxChangeHandler(items, 'fontname'),
 				onselect: function(e) {
 					if (e.control.settings.value) {
+						var title = e.control.settings.text.raw;
+						var arr = title.split("-");
+						var weight = arr[arr.length - 1];
+						weight = !isNaN(weight) ? weight : "400";
 						editor.execCommand('FontName', false, e.control.settings.value);
+						editor.execCommand('FontWeight', false, weight);
 					}
 				}
 			};

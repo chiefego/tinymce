@@ -176,6 +176,7 @@ define("tinymce/Formatter", [
 				forecolor: {inline: 'span', styles: {color: '%value'}, links: true, remove_similar: true},
 				hilitecolor: {inline: 'span', styles: {backgroundColor: '%value'}, links: true, remove_similar: true},
 				fontname: {inline: 'span', styles: {fontFamily: '%value'}},
+				fontweight: {inline: 'span', styles: {fontWeight: '%value'}},
 				fontsize: {inline: 'span', styles: {fontSize: '%value'}},
 				fontsize_class: {inline: 'span', attributes: {'class': '%value'}},
 				blockquote: {block: 'blockquote', wrapper: 1, remove: 'all'},

@@ -375,7 +375,7 @@ define("tinymce/EditorCommands", [
 			},
 
 			// Override commands to use the text formatter engine
-			'ForeColor,HiliteColor,FontName': function(command, ui, value) {
+			'ForeColor,HiliteColor,FontName,FontWeight': function(command, ui, value) {
 				toggleFormat(command, value);
 			},
 
