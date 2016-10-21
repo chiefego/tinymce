@@ -554,15 +554,24 @@ define("tinymce/ui/FormatControls", [
 				tooltip: 'Font Family',
 				values: items,
 				fixedWidth: true,
-				onPostRender: createListBoxChangeHandler(items, 'fontname'),
+				//onPostRender: createListBoxChangeHandler(items, 'fontname'),
+				onPostRender: function() {
+					var self = this;
+					editor.on('nodeChange', function() {
+						var value = null;
+						self.value(value);
+					});
+				},
 				onselect: function(e) {
 					if (e.control.settings.value) {
-						var title = e.control.settings.text.raw;
-						var arr = title.split("-");
-						var weight = arr[arr.length - 1];
-						weight = !isNaN(weight) ? weight : "400";
 						editor.execCommand('FontName', false, e.control.settings.value);
-						editor.execCommand('FontWeight', false, weight);
+						if (editor.settings.fontWeights) {
+							var title = e.control.settings.text.raw;
+							var arr = title.split("-");
+							var weight = arr[arr.length - 1];
+							weight = editor.settings.fontWeights[weight] ? editor.settings.fontWeights[weight] : "400";
+							editor.execCommand('FontWeight', false, weight);
+						}
 					}
 				}
 			};
